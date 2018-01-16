@@ -12,12 +12,14 @@
 int main()
 {
 	int i, j , k  , s , r , p;
-	char buf[1024];
+	char buf[1024]="Enter Your String : ";
 	struct sockaddr_in serv , client;
 	socklen_t size;
 
-	printf("Enter Port Number : ");
-	scanf("%d " , &p);
+	printf("Enter Port Number : \n");
+	scanf("%d" , &p);
+	printf("\n\n");
+
 
 	s = socket(AF_INET , SOCK_DGRAM , 0);
 	if(s == -1)
@@ -42,18 +44,11 @@ int main()
 	}
 
 	printf("Socket Binding Successful \n");
+	// char myStr[50];
+	// scanf("%s",myStr);
 
 	while(1)
-	{
-		strcpy(buf , "Enter Your String : ");
-
-		r = sendto(s , buf , sizeof(buf) , 0 , (struct sockaddr *)&client , sizeof(client));
-		if( r == -1 )
-		{
-			printf("Sending Failure \n");
-			close(s);
-			exit(0);
-		}
+	{   
 
 		char str[1024];
 		r = recvfrom(s , str , sizeof(str) , 0 , (struct sockaddr *)&client , &size);

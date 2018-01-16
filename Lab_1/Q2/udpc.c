@@ -16,8 +16,9 @@ int main()
 	struct sockaddr_in serv ;
 	socklen_t size;
 
-	printf("Enter Port Number : ");
-	scanf("%d " , &p);
+	printf("Enter Port Number : \n");
+	scanf("%d" , &p);
+	printf("\n\n");
 	
 
 	s = socket(AF_INET , SOCK_DGRAM , 0);
@@ -36,13 +37,20 @@ int main()
 	
 	while(1)
 	{
-		r = recvfrom(s , buf , sizeof(buf) , 0 , (struct sockaddr *)&serv , &size);
-		printf("%s ", buf);
+		printf("%s", "Enter string to send to Server : ");
 		
 		char str[1024];
-		scanf("%s" , str);
+		scanf("%s", str);
+
+		printf("\n");
 		
-		r = sendto(s , str , sizeof(str) , 0 , (struct sockaddr *)&serv , size);
+		r = sendto(s , str , strlen(str) + 1 , 0 , (struct sockaddr *)&serv , size);
+
+		if(strcmp(str , "Halt") == 0)
+		{
+			close(s);
+			exit(0);
+		}
 
 		char res[1024];
 		r = recvfrom(s , res , sizeof(res) , 0 , (struct sockaddr *)&serv , &size);
@@ -50,23 +58,24 @@ int main()
 		printf("%s\n", res);
 
 		r = recvfrom(s , buf , sizeof(buf) , 0 , (struct sockaddr *)&serv , &size);
-		printf("%s ", buf);
+		printf("%s\n ", buf);
 
 		r = recvfrom(s , buf , sizeof(buf) , 0 , (struct sockaddr *)&serv , &size);
-		printf("%s ", buf);
+		printf("%s \n ", buf);
 
 		r = recvfrom(s , buf , sizeof(buf) , 0 , (struct sockaddr *)&serv , &size);
-		printf("%s ", buf);
+		printf("%s \n", buf);
 
 		r = recvfrom(s , buf , sizeof(buf) , 0 , (struct sockaddr *)&serv , &size);
-		printf("%s ", buf);
+		printf("%s \n", buf);
 
 		r = recvfrom(s , buf , sizeof(buf) , 0 , (struct sockaddr *)&serv , &size);
-		printf("%s ", buf);
+		printf("%s \n", buf);
 
 		r = recvfrom(s , buf , sizeof(buf) , 0 , (struct sockaddr *)&serv , &size);
-		printf("%s ", buf);
+		printf("%s \n", buf);
 
+		printf("\n");
 	}
 	close(s);
 }
