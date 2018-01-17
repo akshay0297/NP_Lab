@@ -1,0 +1,3 @@
+This file contains some  random text to check if it can be sent to the client.
+This will also get edited when the client asks to replace some text or when 
+he or she asks to reorder the text according to the ascii value of the words.
