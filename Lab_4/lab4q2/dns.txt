@@ -1,0 +1,4 @@
+172.0.0.0 google.com
+172.0.0.1 facebook.com
+172.0.0.2 apple.com
+172.0.0.3 microsoft.com
