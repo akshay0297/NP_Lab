@@ -1,0 +1,85 @@
+ event 	time 	from node	to node	pkt type	pkt size	flags	flow_id	src addr	Dst addr	seq num	pkt id
+
+Sample trace file:
+
++ 0.1 	   1 2 cbr 1000 ------- 2 1.0 5.0 0 0
+- 0.1      1 2 cbr 1000 ------- 2 1.0 5.0 0 0
+r 0.114    1 2 cbr 1000 ------- 2 1.0 5.0 0 0
++ 0.114    2 3 cbr 1000 ------- 2 1.0 5.0 0 0
+- 0.114    2 3 cbr 1000 ------- 2 1.0 5.0 0 0
+r 0.240667 2 3 cbr 1000 ------- 2 1.0 5.0 0 0
++ 0.280667 3 6 cbr 1000 ------- 2 1.0 5.0 0 0
+- 0.280667 3 6 cbr 1000 ------- 2 1.0 5.0 0 0
+d 0.280671 4 6 cbr 1000 ------- 2 1.0 5.0 0 0
+r 0.320671 6 5 cbr 1000 ------- 2 1.0 5.0 0 0
+ 
+
+Fields of trace file
+
+    Event
+
+    First character in trace file represent type of event i.e. packet dropped, received, added to queue.
+
+
+
+    event	Meaning
+    + 	Added to queue
+    - 	Removed from queue
+    r 	received at node
+    d 	dropped
+
+    Time
+
+    Second field in trace file represent time in second at which event occurred.
+
+    From and to Node
+
+    Third and fourth field in trace file specify and sender and receiver of current packet.
+
+
+    Packet Type
+
+    Fifth field in trace file represent type of packet. It can be ftp, http, cbr etc depends on the application attached. Some of them are ..
+
+
+    pkt type 	Meaning
+    tcp 	TCP packet
+    cbr 	CBR traffic packet
+    aodv 	AODV packet 
+
+    Packet size
+
+    Sixth field show size of packet in bytes.
+
+    Flags
+
+    There are seven flags which can be used. In case if any of these not used then at their place '-' is included. In our example no flags are used that's why seven '-' included at place of seven flags.
+
+
+    Flag 	Meaning
+    - 	disabled
+    C 	ECN echo
+    P 	Priority in IP header is enabled
+    A 	Congestion Action
+    E 	Congestion experienced
+    F 	TCP fast start
+    N 	Explicit congestion notification is on
+
+    Flow id
+
+    this field gives IP flow id as specified in IP version 6.
+
+    Source and Destination address
+
+    Source and destination address is specifier in format of "addr.port". Port is also specified with node address.
+
+    Sequence number
+
+    In ns2 agent can attach sequence number with packets. This field is used only when agent attach sequence number to packets.
+
+    Packet id
+
+    Every packet has a unique identifier. Every time a new packet is generated, assigned a unique id to it.
+
+
+
